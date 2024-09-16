@@ -1,0 +1,24 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^22.5.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0",
+    "imap-simple": "^5.1.0",
+    "mailparser": "^3.7.1",
+    "pdf-parse": "^1.1.1",
+    "playwright": "^1.47.0"
+  }
+}
