@@ -69,4 +69,6 @@ Happy number crunching!`;
       console.log("Text not found in email.");
     }
   }
+
+  await connection.end();
 })();

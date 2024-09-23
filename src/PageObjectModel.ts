@@ -162,16 +162,29 @@ export class ReportGroup {
     // Wait for the report save button to be clickable (visible and enabled)
     await this.reportSave.waitFor({ state: "visible" });
     await this.reportSave.waitFor({ state: "attached" });
-    console.log("Report save button is visible and enabled");
+   // console.log("Report save button is visible and enabled");
 
     // Click on the save report button
     await this.reportSave.click();
 
-    console.log("Clicked on the report save button");
+    const reportDetailsInput = await this.page.getByLabel("report details");
+
+    console.log("report save popup isVisible ", await reportDetailsInput.isVisible());
+
+    if (await reportDetailsInput.isVisible()) {
+      await this.page
+        .getByLabel("report details")
+        .getByRole("button", { name: "Save" })
+        .click();
+    }
+
+    // console.log("Clicked on the report save button");
     // Wait for the report save button to disappear (hide) after the click
     await this.reportSave.waitFor({ state: "hidden" });
 
-    console.log("Report saved successfully before waiting for report group load");
+    // console.log(
+    //   "Report saved successfully before waiting for report group load"
+    // );
     // Wait for the report group to load after saving
     await this.waitForReportGroupLoad();
 
@@ -186,7 +199,9 @@ export class ReportGroup {
         timeout: 15000,
       });
       await this.reportGroupLoader.waitFor({ state: "hidden" });
-    } catch (e) { console.log("Error in waitForReportGroupLoad", e); }
+    } catch (e) {
+      console.log("Error in waitForReportGroupLoad");
+    }
     // Wait for the widget loader to hide
     await this.widgetLoader.waitFor({ state: "hidden" });
   }
@@ -615,7 +630,7 @@ export class WidgetDetail {
     if (!noTabularDataVisible) {
       // Step 3: Wait for column headers and scroll into view
       await this.colHeadsSelector.first().waitFor();
-     // await this.settingListItemSelector.first().waitFor();
+      // await this.settingListItemSelector.first().waitFor();
       await this.colHeadsSelector.first().scrollIntoViewIfNeeded();
 
       // Step 4: Get all column header elements and check for the expected columns
@@ -684,10 +699,12 @@ export class WidgetDetail {
     await this.settingsApplyUD.click();
 
     try {
-    if (await this.widgetLoader.isVisible()) {
-      await this.widgetLoader.first().waitFor({ state: "hidden", timeout: 5000 });
-    }
-  } catch(e){}
+      if (await this.widgetLoader.isVisible()) {
+        await this.widgetLoader
+          .first()
+          .waitFor({ state: "hidden", timeout: 5000 });
+      }
+    } catch (e) {}
   }
 
   // Method to wait for column customizer UD to be clickable
@@ -703,18 +720,22 @@ export class WidgetDetail {
 
   async waitForWidgetLoad() {
     try {
-    await this.widgetLoader.waitFor({ state: 'visible', timeout: 5000 });
-    await this.widgetLoader.waitFor({ state: 'hidden' });
-    } catch(e){}
+      await this.widgetLoader.waitFor({ state: "visible", timeout: 5000 });
+      await this.widgetLoader.waitFor({ state: "hidden" });
+    } catch (e) {}
   }
 
   // Helper method to locate the column name in the UD list
   private settingUDColName(colName: string): Locator {
-    return this.page.locator(`//ul[contains(@class,'table-settings-menu')]//label[text()='${colName}']`);
+    return this.page.locator(
+      `//ul[contains(@class,'table-settings-menu')]//label[text()='${colName}']`
+    );
   }
 
   // Helper method to check if the column in UD list is already checked
   private settingUDColChecked(colName: string): Locator {
-    return this.page.locator(`//li[contains(@class,'dropdown-item')]//label[text()='${colName}' and ..//input[@value='true']]`);
+    return this.page.locator(
+      `//li[contains(@class,'dropdown-item')]//label[text()='${colName}' and ..//input[@value='true']]`
+    );
   }
 }

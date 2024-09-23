@@ -83,6 +83,8 @@ test.describe("TC-121: Verify add column to tabular data", () => {
     console.log({ isHeaderPresent })
     expect(isHeaderPresent).toBe(true);
 
+    await widgetDetail.closeUnderlyingData();
+
     // Step 4: Save the report
     await reportGroup.saveReport();
 
@@ -105,23 +107,20 @@ test.describe("TC-243: Verify single group by - updated column in tabular data",
     const widgetDetail = new WidgetDetail(page);
     const filter = new Filter(page);
 
-    // Step 1: Close underlying data
-    await widgetDetail.closeUnderlyingData();
-
-    // Step 2: Open configure panel
+    // Step 1: Open configure panel
     await filter.openConfigurePanel();
 
-    // Step 3: Add group by "Priority"
+    // Step 2: Add group by "Priority"
     await widgetDetail.addGroupBy("Priority");
 
-    // Step 4: Apply the filter
+    // Step 3: Apply the filter
     await filter.clickApply();
 
-    // Step 5: Verify group by with underlying data
+    // Step 4: Verify group by with underlying data
     const isGroupByValid = await widgetDetail.verifyGroupByWithUD();
     expect(isGroupByValid).toBe(true);
 
-    // Step 6: Scroll to the top
+    // Step 5: Scroll to the top
     await widgetDetail.scrollToTop();
   });
 });
@@ -156,13 +155,7 @@ test.describe("TC-130: Verify save button functionality", () => {
   test("should verify the save button and table header", async () => {
     const reportGroup = new ReportGroup(page);
     const widgetDetail = new WidgetDetail(page);
-
-    // Step 1: Save the report
-    await reportGroup.saveReport();
-
-    // Step 2: Change report mode
-    await reportGroup.changeReportMode();
-
+    
     // Step 3: Verify table header
     const isHeaderVerified = await widgetDetail.verifyTableHeader([
       "Created Date",
@@ -171,5 +164,13 @@ test.describe("TC-130: Verify save button functionality", () => {
 
     // Step 4: Scroll to the top
     await widgetDetail.scrollToTop();
+
+    await widgetDetail.closeUnderlyingData();
+    
+    // Step 1: Save the report
+    await reportGroup.saveReport();
+
+    // Step 2: Change report mode
+    await reportGroup.changeReportMode();
   });
 });
