@@ -1,5 +1,6 @@
 import { test, expect, Page } from "@playwright/test";
 import { HomePage, Filter, ReportGroup, WidgetDetail } from "./PageObjectModel";
+import { Severity, description, severity } from "allure-js-commons";
 
 // https://github.com/freshdesk/reports-automation/blob/bc568c1a87ae552a9fb402f78203e12fff3fe43b/analytics/spec/Analytics_UI/Common/widget_detail_spec.rb
 
@@ -12,6 +13,11 @@ test.beforeAll(async ({ browser }) => {
 
 test.describe("TC-119: Verify show tabular data and open tabular data", () => {
   test("should verify the tabular data functionality", async () => {
+    
+    /** use custom tags for allure */
+    description("testing descruption");
+    severity(Severity.CRITICAL)
+    
     await page.goto(
       "https://fv-prestaging.freshreports.com/?appName=freshservice&auth=eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJmaXJzdE5hbWUiOiJGcmVzaHJlcG9ydHMiLCJsYXN0TmFtZSI6IkF1dG9tYXRpb24iLCJlbWFpbCI6InJhdmkucHJhc2FudGhAZnJlc2h3b3Jrcy5jb20iLCJ1c2VySWQiOjEzNjA3LCJzZXNzaW9uRXhwaXJhdGlvbiI6MTc1NDY0MDU2MCwidGVuYW50SWQiOjEwMDAwMDY2MCwidGltZXpvbmUiOiJBc2lhL0tvbGthdGEiLCJwb3J0YWxVcmwiOiJodHRwOi8vZmViMDEuZnJlc2hjbWRiLmNvbSJ9.U4VHVoS6wfkKnsh6BxzlPL1jwT0GswVySJiWMq2L6wA"
     );

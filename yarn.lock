@@ -86,7 +86,7 @@ allure-commandline@^2.30.0:
   resolved "https://registry.npmjs.org/allure-commandline/-/allure-commandline-2.30.0.tgz#c121021d263cad2474ec0fd7490de4d3c65a06f3"
   integrity sha512-qSaGG/I8P38q8gufnxvEog+IrIeCick+PJxxoTp5Vh/L8kviymIfv3A7fvYWziOqZ/oDywyOuNFMEfPZiiKwAA==
 
-allure-js-commons@3.0.1:
+allure-js-commons@3.0.1, allure-js-commons@^3.0.1:
   version "3.0.1"
   resolved "https://registry.npmjs.org/allure-js-commons/-/allure-js-commons-3.0.1.tgz#99a530ac475523cfc723a52c3b1f2186247a63ab"
   integrity sha512-mKnOv5N+nr8jcef3mUUxDD0Jka1t4BXqsA3w2S54l7Yj0Mnpsvb1GlkaxhYkW6nemK3ZYBEfajp33yyqXiCncA==
