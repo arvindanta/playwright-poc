@@ -1,0 +1,2 @@
+CI / CD setup reference 
+https://github.com/freshdesk/reports-automation/blob/62b4a661a749e1314632a37daf07610cae7099bb/.github/workflows/automation_run_scheduled.yml

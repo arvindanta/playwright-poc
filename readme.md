@@ -27,6 +27,6 @@ node pdf-email-content-check
 yarn html-report
 
 ### Allure reporter
-1yarn allure-report
+yarn allure-report
 
 
