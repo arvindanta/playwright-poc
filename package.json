@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "allure-report": "npx allure serve allure-results",
+    "html-report": "npx playwright show-report",
+    "test": "npx playwright test --config playwright.config.ts",
+    "test:debug": "npx playwright test --config playwright.config.ts --debug",
+    "test:ui": "npx playwright test --config playwright.config.ts --ui"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +20,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.47.0",
+    "allure-commandline": "^2.30.0",
+    "allure-playwright": "^3.0.1",
     "imap-simple": "^5.1.0",
     "mailparser": "^3.7.1",
     "pdf-parse": "^1.1.1",

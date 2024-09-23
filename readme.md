@@ -20,5 +20,13 @@ npx playwright test "widget.spec.ts" --ui
 ### Email content check -> poc with node -> imap and mailparser
 node email-content-check
 
+### PDF content check -> poc with node -> imap and pdf-parser
+node pdf-email-content-check
+
+### HTML reporter
+yarn html-report
+
+### Allure reporter
+1yarn allure-report
 
 
